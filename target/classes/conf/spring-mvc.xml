@@ -13,11 +13,23 @@
 	
 	<context:component-scan base-package="com.demo.controller,com.demo.service.impl,com.demo.dao"/>
 	
-	<mvc:annotation-driven />
+	<mvc:annotation-driven></mvc:annotation-driven>
+	
+	<bean class="com.demo.exception.CustomExceptionResolver"></bean>
+	
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<bean class="com.demo.interceptor.LoginInterceptor" />
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<bean class="com.demo.interceptor.PermissionInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
 	
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" >
 		<property name="prefix" value="/WEB-INF/jsp/"></property>
 		<property name="suffix" value=".jsp"></property>
 	</bean>
-	
 </beans>

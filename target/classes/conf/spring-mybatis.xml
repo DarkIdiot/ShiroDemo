@@ -14,33 +14,26 @@
     http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
     http://www.springframework.org/schema/util 
     http://www.springframework.org/schema/util/spring-util-4.0.xsd">
-	<!-- <import resource="classpath:conf/spring-mvc.xml"/>  使用import标签带入其他的spring的配置文件-->
 	
-	<!-- 引入jdbc配置文件 -->
     <context:property-placeholder location="classpath:conf/jdbc.properties"/>
     
-	<!--本示例采用DBCP连接池。 连接池配置如下 -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="${jdbc_driverClassName}" />
 		<property name="url" value="${jdbc_url}" />
 		<property name="username" value="${jdbc_username}" />
 		<property name="password" value="${jdbc_password}" />
 	</bean>
-	<!-- mybatis文件配置，扫描所有mapper文件 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"
 		p:dataSource-ref="dataSource" p:configLocation="classpath:conf/mybatis-config.xml"
-		p:mapperLocations="classpath:com/demo/dao/mapper/*Mapper.xml" /><!-- configLocation为mybatis属性mapperLocations为所有mapper -->
+		p:mapperLocations="classpath:com/demo/dao/mapper/*Mapper.xml" />
 		
-	<!-- spring与mybatis整合配置，扫描所有dao ,生成与DAO类相同名字的bean（除了首字母小写）-->
 	<!-- 注入sqlSessionFactoryBeanName而非sqlSessionFactory:是由于本文件上面使用了property-placeholder,
 	如果使用sqlSessionFactory就会导致配置文件替换占位符失败,进而连接不上数据库 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"
 		p:basePackage="com.demo.dao" p:sqlSessionFactoryBeanName="sqlSessionFactory" />
 
-	<!-- 对数据源进行事务管理,spring使用jdbc的事务控制 -->
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
 		p:dataSource-ref="dataSource" />
-	<!-- 通知 -->
 	<tx:advice id="txAdvice" transaction-manager="transactionManager">
 		<tx:attributes>
 			<tx:method name="save*" propagation="REQUIRED"/>

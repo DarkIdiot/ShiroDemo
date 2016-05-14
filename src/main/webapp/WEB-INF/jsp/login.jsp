@@ -8,10 +8,10 @@
 <meta http-equiv="cache-control" content="no-cache">
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 
-<LINK rel="stylesheet" type="text/css" href="${baseurl}styles/style.css">
-<LINK rel="stylesheet" type="text/css" href="${baseurl}styles/login.css">
-<LINK rel="stylesheet" type="text/css"	href="${baseurl}js/easyui/themes/default/easyui.css">
-<LINK rel="stylesheet" type="text/css"	href="${baseurl}js/easyui/themes/icon.css">
+<LINK rel="stylesheet" type="text/css" href="${baseurl}/styles/style.css">
+<LINK rel="stylesheet" type="text/css" href="${baseurl}/styles/login.css">
+<LINK rel="stylesheet" type="text/css"	href="${baseurl}/js/easyui/themes/default/easyui.css">
+<LINK rel="stylesheet" type="text/css"	href="${baseurl}/js/easyui/themes/icon.css">
 
 <STYLE type="text/css">
 .btnalink {
@@ -22,7 +22,7 @@
 	float: left;
 	margin: 12px 28px 12px auto;
 	line-height: 30px;
-	background: url('${baseurl}images/login/btnbg.jpg') no-repeat;
+	background: url('${baseurl}/images/login/btnbg.jpg') no-repeat;
 	font-size: 14px;
 	color: #fff;
 	font-weight: bold;
@@ -41,17 +41,17 @@
 	
 </SCRIPT>
 </HEAD>
-<BODY style="background: #f6fdff url(${baseurl}images/login/bg1.jpg) repeat-x;">
-	<FORM id="loginform" name="loginform" action="${baseurl}login.action"
+<BODY style="background: #f6fdff url(${baseurl}/images/login/bg1.jpg) repeat-x;">
+	<FORM id="loginform" name="loginform" action="${baseurl}/login.action"
 		method="post">
 		<DIV class="logincon">
 
 			<DIV class="title">
-				<IMG alt="" src="${baseurl}images/login/logo.png">
+				<IMG alt="" src="${baseurl}/images/login/logo.png">
 			</DIV>
 
 			<DIV class="cen_con">
-				<IMG alt="" src="${baseurl}images/login/bg2.png">
+				<IMG alt="" src="${baseurl}/images/login/bg2.png">
 			</DIV>
 
 			<DIV class="tab_con">
@@ -72,7 +72,7 @@
 						<TR>
 							<TD>验证码：</TD>
 							<TD><input id="randomcode" name="randomcode" size="8" /> <img
-								id="randomcode_img" src="${baseurl}validatecode.jsp" alt=""
+								id="randomcode_img" src="${baseurl}/validatecode.jsp" alt=""
 								width="56" height="20" align='absMiddle' /> <a
 								href=javascript:randomcode_refresh()>刷新</a></TD>
 						</TR>

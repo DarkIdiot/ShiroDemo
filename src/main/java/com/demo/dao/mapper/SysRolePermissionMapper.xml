@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="cn.itcast.ssm.mapper.SysRoleMapper" >
-  <resultMap id="BaseResultMap" type="cn.itcast.ssm.po.SysRole" >
+<mapper namespace="com.demo.dao.SysRolePermissionMapper" >
+  <resultMap id="BaseResultMap" type="com.demo.model.SysRolePermission" >
     <id column="id" property="id" jdbcType="VARCHAR" />
-    <result column="name" property="name" jdbcType="VARCHAR" />
-    <result column="available" property="available" jdbcType="CHAR" />
+    <result column="sys_role_id" property="sysRoleId" jdbcType="VARCHAR" />
+    <result column="sys_permission_id" property="sysPermissionId" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -65,15 +65,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, name, available
+    id, sys_role_id, sys_permission_id
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.itcast.ssm.po.SysRoleExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.demo.model.SysRolePermissionExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from sys_role
+    from sys_role_permission
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -84,67 +84,67 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
-    from sys_role
+    from sys_role_permission
     where id = #{id,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
-    delete from sys_role
+    delete from sys_role_permission
     where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="cn.itcast.ssm.po.SysRoleExample" >
-    delete from sys_role
+  <delete id="deleteByExample" parameterType="com.demo.model.SysRolePermissionExample" >
+    delete from sys_role_permission
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="cn.itcast.ssm.po.SysRole" >
-    insert into sys_role (id, name, available
+  <insert id="insert" parameterType="com.demo.model.SysRolePermission" >
+    insert into sys_role_permission (id, sys_role_id, sys_permission_id
       )
-    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{available,jdbcType=CHAR}
+    values (#{id,jdbcType=VARCHAR}, #{sysRoleId,jdbcType=VARCHAR}, #{sysPermissionId,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="cn.itcast.ssm.po.SysRole" >
-    insert into sys_role
+  <insert id="insertSelective" parameterType="com.demo.model.SysRolePermission" >
+    insert into sys_role_permission
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
       </if>
-      <if test="name != null" >
-        name,
+      <if test="sysRoleId != null" >
+        sys_role_id,
       </if>
-      <if test="available != null" >
-        available,
+      <if test="sysPermissionId != null" >
+        sys_permission_id,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         #{id,jdbcType=VARCHAR},
       </if>
-      <if test="name != null" >
-        #{name,jdbcType=VARCHAR},
+      <if test="sysRoleId != null" >
+        #{sysRoleId,jdbcType=VARCHAR},
       </if>
-      <if test="available != null" >
-        #{available,jdbcType=CHAR},
+      <if test="sysPermissionId != null" >
+        #{sysPermissionId,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="cn.itcast.ssm.po.SysRoleExample" resultType="java.lang.Integer" >
-    select count(*) from sys_role
+  <select id="countByExample" parameterType="com.demo.model.SysRolePermissionExample" resultType="java.lang.Integer" >
+    select count(*) from sys_role_permission
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update sys_role
+    update sys_role_permission
     <set >
       <if test="record.id != null" >
         id = #{record.id,jdbcType=VARCHAR},
       </if>
-      <if test="record.name != null" >
-        name = #{record.name,jdbcType=VARCHAR},
+      <if test="record.sysRoleId != null" >
+        sys_role_id = #{record.sysRoleId,jdbcType=VARCHAR},
       </if>
-      <if test="record.available != null" >
-        available = #{record.available,jdbcType=CHAR},
+      <if test="record.sysPermissionId != null" >
+        sys_permission_id = #{record.sysPermissionId,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -152,30 +152,30 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update sys_role
+    update sys_role_permission
     set id = #{record.id,jdbcType=VARCHAR},
-      name = #{record.name,jdbcType=VARCHAR},
-      available = #{record.available,jdbcType=CHAR}
+      sys_role_id = #{record.sysRoleId,jdbcType=VARCHAR},
+      sys_permission_id = #{record.sysPermissionId,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="cn.itcast.ssm.po.SysRole" >
-    update sys_role
+  <update id="updateByPrimaryKeySelective" parameterType="com.demo.model.SysRolePermission" >
+    update sys_role_permission
     <set >
-      <if test="name != null" >
-        name = #{name,jdbcType=VARCHAR},
+      <if test="sysRoleId != null" >
+        sys_role_id = #{sysRoleId,jdbcType=VARCHAR},
       </if>
-      <if test="available != null" >
-        available = #{available,jdbcType=CHAR},
+      <if test="sysPermissionId != null" >
+        sys_permission_id = #{sysPermissionId,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="cn.itcast.ssm.po.SysRole" >
-    update sys_role
-    set name = #{name,jdbcType=VARCHAR},
-      available = #{available,jdbcType=CHAR}
+  <update id="updateByPrimaryKey" parameterType="com.demo.model.SysRolePermission" >
+    update sys_role_permission
+    set sys_role_id = #{sysRoleId,jdbcType=VARCHAR},
+      sys_permission_id = #{sysPermissionId,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>

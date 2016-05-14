@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.demo.model.SysPermission;
 
-public interface SysPermissionMapperCustom {
+public interface SysPermissionCustomMapper {
 	
 	//根据用户id查询菜单
 	public List<SysPermission> findMenuListByUserId(String userid)throws Exception;

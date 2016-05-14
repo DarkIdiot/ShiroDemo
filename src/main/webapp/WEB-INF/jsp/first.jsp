@@ -7,7 +7,7 @@
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
 
-<LINK rel="stylesheet" type="text/css" href="${baseurl}js/easyui/styles/default.css">
+<LINK rel="stylesheet" type="text/css" href="${baseurl}/js/easyui/styles/default.css">
 <%@ include file="/WEB-INF/jsp/common_css.jsp"%>
 <%@ include file="/WEB-INF/jsp/common_js.jsp"%>
 <SCRIPT type="text/javascript">
@@ -25,13 +25,12 @@
 					content : createFrame(src)//ifram内容
 				}
 			});
-
 	};
 	var _menus;
 	$(function() {//预加载方法
 		//通过ajax请求菜单
 		/* $.ajax({
-			url : '${baseurl}menu.json',
+			url : '${baseurl}/menu.json',
 			type : 'POST',
 			dataType : 'json',
 			success : function(data) {
@@ -48,7 +47,7 @@
 
 		$('#tabs').tabs('add', {
 			title : '欢迎使用',
-			content : createFrame('${baseurl}welcome.jsp')
+			content : createFrame('${baseurl}/welcome.jsp')
 		}).tabs({
 			//当重新选中tab时将ifram的内容重新加载一遍
 			onSelect : tabOnSelect
@@ -63,21 +62,15 @@
 	function logout() {
 		_confirm('您确定要退出本系统吗?',null,
 				function(){
-					location.href = '${baseurl}logout.action';
+					location.href = '${baseurl}/logout.action';
 				}
 		)
 	}
-	
-
 	//帮助
 	function showhelp(){
-	    window.open('${baseurl}help/help.html','帮助文档'); 
+	    window.open('${baseurl}/help/help.html','帮助文档'); 
 	}
-	
-	
 </SCRIPT>
-
-
 
 <META name="GENERATOR" content="MSHTML 9.00.8112.16540">
 </HEAD>
@@ -90,7 +83,7 @@
 			欢迎当前用户：${activeUser.username}&nbsp;&nbsp;
 			<A href=javascript:showhelp()>使用帮助</A>
 			&nbsp;&nbsp;
-			<A title='修改密码' ref='modifypwd' href="#" rel='${baseurl}user/updatepwd.action' icon='icon-null' id="modifypwd" >修改密码</A>
+			<A title='修改密码' ref='modifypwd' href="#" rel='${baseurl}/user/updatepwd.action' icon='icon-null' id="modifypwd" >修改密码</A>
 			&nbsp;&nbsp;
 			<A id="loginOut" href=javascript:logout()>退出系统</A>
 
@@ -118,33 +111,35 @@
 					<li><div>
 						<a title="${menu.name }" ref="1_1" href="#"
 							rel="${baseurl }/${menu.url }" icon="icon-log"><span
-							class="icon icon-log">&nbsp;</span><span class="nav"><a href=javascript:addTab('${menu.name }','${baseurl }/${menu.url }')>${menu.name }</a></span></a>
+							class="icon icon-log">&nbsp;</span><span class="nav"><a href=javascript:addTab('${menu.name }','${baseurl }${menu.url }')>${menu.name }</a></span></a>
 					</div></li>
 				</c:forEach>
 				</ul>
 			</c:if>
-			<%-- <ul>
+			<!-- 静态资源,用于展示 -->
+			<ul>
+			<li>以下为静态资源</li>
 			<li><div>
-					<a title="创建采购单" ref="1_1" href="#"
-						rel="${baseurl} items/queryItems.action" icon="icon-log"><span
-						class="icon icon-log">&nbsp;</span><span class="nav"><a href=javascript:addTab('创建采购单','${baseurl}items/queryItems.action')>商品查询</a></span></a>
+					<a title="商品查询" ref="1_1" href="#"
+						rel="${baseurl}/ items/queryItems.action" icon="icon-log"><span
+						class="icon icon-log">&nbsp;</span><span class="nav"><a href=javascript:addTab('商品管理','${baseurl}/item/query.action')>商品查询</a></span></a>
 				</div></li>
 			<li><div>
-					<a title="提交采购单" ref="1_1" href="#"
+					<a title="商品添加" ref="1_1" href="#"
 						rel="/purchasing/order/orderList.action?type=1" icon="icon-log"><span
-						class="icon icon-log">&nbsp;</span><span class="nav">提交采购单</span></a>
+						class="icon icon-log">&nbsp;</span><span class="nav"><a href=javascript:addTab('商品管理','${baseurl}/item/add.action')>商品添加</a></span></a>
 				</div></li>
 			<li><div>
-					<a title="部门经理审核" ref="1_1" href="#"
+					<a title="员工管理" ref="1_1" href="#"
 						rel="/purchasing/order/orderList.action?type=2" icon="icon-log"><span
-						class="icon icon-log">&nbsp;</span><span class="nav">部门经理审核</span></a>
+						class="icon icon-log">&nbsp;</span><span class="nav"><a href=javascript:addTab('员工查询','${baseurl}/user/query.action')>员工管理</a></span></a>
 				</div></li>
 			<li><div>
-					<a title="总经理审核" ref="1_1" href="#"
+					<a title="员工管理" ref="1_1" href="#"
 						rel="/purchasing/order/orderList.action?type=3" icon="icon-log"><span
-						class="icon icon-log">&nbsp;</span><span class="nav">总经理审核</span></a>
+						class="icon icon-log">&nbsp;</span><span class="nav"><a href=javascript:addTab('员工信息修改','${baseurl}/user/edit.action')>员工信息编辑</a></span></a>
 				</div></li>
-		</ul> --%>
+		</ul>
 		</DIV>
 	</DIV>
 
